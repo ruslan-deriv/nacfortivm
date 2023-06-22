@@ -1,0 +1,5 @@
+---
+- name: Logout
+  httpapi_request:
+    url: "/logout"
+    method: POST

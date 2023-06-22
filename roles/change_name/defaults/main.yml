@@ -1,0 +1,8 @@
+---
+# defaults file for change_name
+name: change name
+hosts: "{{ target_host | default('fortigate01') }}"
+collections:
+  - fortinet.fortios
+connection: httpapi
+

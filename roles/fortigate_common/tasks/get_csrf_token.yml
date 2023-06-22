@@ -1,0 +1,10 @@
+---
+- name: Get CSRF token
+  httpapi_request:
+    url: "/logincheck"
+    method: POST
+    body_format: form-urlencoded
+    body:
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+  register: csrf_token

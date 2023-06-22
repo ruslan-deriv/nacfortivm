@@ -1,0 +1,9 @@
+---
+# vars file for change_name
+#
+  vdom: "root"
+  ansible_httpapi_use_ssl: no
+  ansible_httpapi_validate_certs: no
+  ansible_httpapi_port: 80
+  authorization: "NkQndH4Gj5q63Hpgs7QhwNq0qyftHm"
+  hostname: "LADA_Test"

@@ -1,0 +1,11 @@
+---
+- name: main
+  hosts: fortigate01
+  connection: httpapi
+  gather_facts: no
+  vars_files:
+    - /home/osboxes/acks.yml
+  
+
+  roles:
+    - fortigate_mac_filtering

@@ -1,0 +1,9 @@
+---
+- name: Login
+  httpapi_request:
+    url: "/logincheck"
+    method: POST
+    body_format: form-urlencoded
+    body:
+      username: "{{ fortigate_username }}"
+      password: "{{ fortigate_password }}"

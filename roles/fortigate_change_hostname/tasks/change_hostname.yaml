@@ -1,0 +1,9 @@
+---
+- name: Change FortiGate hostname
+  httpapi_request:
+    url: "/api/v2/cmdb/system/global"
+    method: PUT
+    body_format: json
+    body:
+      hostname: "{{ fortigate_hostname }}"
+  register: result

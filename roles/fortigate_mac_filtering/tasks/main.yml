@@ -1,0 +1,50 @@
+---
+# tasks file for fortigate_mac_filtering
+
+- name: Get reserved address list
+  uri:
+    url: "http://192.168.141.1/api/v2/cmdb/system.dhcp/server/{{ server }}/reserved-address?access_token={{ access }}"
+    method: GET
+    headers:
+      Accept: "application/json"
+  register: reserved_address_response
+
+- name: Extract ID from results
+  set_fact:
+    id_value: "{{ reserved_address_response.json.results[-1].id | int }}"
+
+- name: Display ID value
+  debug:
+    var: id_value
+
+- name: Perform addition
+  set_fact:
+    id_plus_one: "{{ id_value | int + 1 }}"
+
+- name: Display ID plus one
+  debug:
+    var: id_plus_one
+
+- name: Configure reserved address
+  set_fact:
+    payload:
+      id: "{{ id_plus_one }}"
+      type: "mac"
+      mac: "{{ mac_address }}"
+      action: "assign"
+      circuit-id-type: "string"
+      circuit-id: ""
+      remote-id-type: "string"
+      remote-id: ""
+      description: "added by api"
+
+- name: Send API request
+  uri:
+    url: "http://192.168.141.1/api/v2/cmdb/system.dhcp/server/{{ server }}/reserved-address?access_token={{ access }}"
+    method: POST
+    headers:
+      Accept: "application/json"
+      Content-Type: "application/json"
+    body_format: json
+    body: "{{ payload | to_json }}"
+  delegate_to: localhost
