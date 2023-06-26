@@ -1,0 +1,19 @@
+---
+# tasks file for fortigate_mac_filtering
+
+- name: Get reserved address list
+  uri:
+    url: "{{ url }}{{ access }}"
+    method: GET
+    headers:
+      Accept: "application/json"
+  register: reserved_address_response
+
+- name: Save reserved address response to a file
+  copy:
+    content: "{{ reserved_address_response }}"
+    dest: /home/osboxes/ansible_conf/macadd/forticonfmac.txt
+
+
+
+

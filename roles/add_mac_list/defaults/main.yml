@@ -1,0 +1,9 @@
+---
+# defaults file for fortigate_mac_filtering
+# roles/whitelist/defaults/main.yml
+# Connection type
+connection_type: httpapi
+
+# Variables file
+vars_files_path: /home/osboxes/acks.yml
+

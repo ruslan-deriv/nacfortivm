@@ -1,0 +1,27 @@
+---
+# tasks file for fortigate_mac_filtering
+
+- name: Get reserved address list
+  uri:
+    url: "{{ url }}{{ access }}"
+    method: GET
+    headers:
+      Accept: "application/json"
+  register: reserved_address_response
+
+- name: Parsed response
+  set_fact:
+    parsed_response: "{{ reserved_address_response.json | to_nice_json }}"
+
+- name: Save reserved address response to a file
+  copy:
+    content: "{{ parsed_response }}"
+    dest: "{{ file }}"
+
+- name: Push to git
+  shell: |
+    cd "{{ git_mac_conf_path }}"
+    git add .
+    git commit -m 'new mac add'
+    git push
+  delegate_to: localhost

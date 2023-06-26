@@ -2,4 +2,4 @@
 # vars file for fortigate_mac_filtering
 url: http://192.168.141.1/api/v2/cmdb/system.dhcp/server/2/reserved-address?access_token=
 server: "2"
-mac_address: "44:66:33:22:99:33"
+mac_address: "99:88:44:33:55:11"
