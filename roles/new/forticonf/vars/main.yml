@@ -1,0 +1,5 @@
+---
+# vars file for fortigate_mac_filtering
+url: http://192.168.141.1/api/v2/cmdb/system.dhcp/server/2/reserved-address?access_token=
+file: /home/osboxes/ansible_conf/macadd/forticonfmac.txt
+git_mac_conf_path: /home/osboxes/ansible_conf/macadd

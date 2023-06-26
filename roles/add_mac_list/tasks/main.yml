@@ -1,0 +1,14 @@
+- name: Read MAC addresses from file
+  shell: cat "{{ mac_file }}"
+  register: mac_addresses_output
+  changed_when: false
+
+- name: Split MAC addresses
+  set_fact:
+    mac_addresses: "{{ mac_addresses_output.stdout_lines }}"
+
+- name: Iterate over MAC addresses and add them
+  include_tasks: add_mac.yml
+  loop: "{{ mac_addresses }}"
+  loop_control:
+    loop_var: mac_address
